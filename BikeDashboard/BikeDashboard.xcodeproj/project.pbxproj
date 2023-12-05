@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20C8E6892B1FAEDE006A9BEA /* SpeedometerGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */; };
 		20EB94B42B1E59A700DF386D /* BikeDashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB94B32B1E59A700DF386D /* BikeDashboardApp.swift */; };
 		20EB94B62B1E59A700DF386D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB94B52B1E59A700DF386D /* ContentView.swift */; };
 		20EB94B82B1E59A800DF386D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20EB94B72B1E59A800DF386D /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerGauge.swift; sourceTree = "<group>"; };
 		20EB94B02B1E59A700DF386D /* BikeDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20EB94B32B1E59A700DF386D /* BikeDashboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeDashboardApp.swift; sourceTree = "<group>"; };
 		20EB94B52B1E59A700DF386D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20C8E6872B1FAE9F006A9BEA /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		20C8E68A2B1FB98F006A9BEA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				20EB94B52B1E59A700DF386D /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		20EB94A72B1E59A700DF386D = {
 			isa = PBXGroup;
 			children = (
@@ -94,8 +112,9 @@
 		20EB94B22B1E59A700DF386D /* BikeDashboard */ = {
 			isa = PBXGroup;
 			children = (
+				20C8E68A2B1FB98F006A9BEA /* View */,
+				20C8E6872B1FAE9F006A9BEA /* ViewModel */,
 				20EB94B32B1E59A700DF386D /* BikeDashboardApp.swift */,
-				20EB94B52B1E59A700DF386D /* ContentView.swift */,
 				20EB94B72B1E59A800DF386D /* Assets.xcassets */,
 				20EB94B92B1E59A800DF386D /* Preview Content */,
 			);
@@ -257,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20C8E6892B1FAEDE006A9BEA /* SpeedometerGauge.swift in Sources */,
 				20EB94B62B1E59A700DF386D /* ContentView.swift in Sources */,
 				20EB94B42B1E59A700DF386D /* BikeDashboardApp.swift in Sources */,
 			);
