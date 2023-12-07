@@ -76,7 +76,7 @@
 		20C8E6872B1FAE9F006A9BEA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */,
+				20EE57DE2B21CA49008A0ADA /* SpeedometerGauge */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -144,6 +144,14 @@
 				20EB94D02B1E59A900DF386D /* BikeDashboardUITestsLaunchTests.swift */,
 			);
 			path = BikeDashboardUITests;
+			sourceTree = "<group>";
+		};
+		20EE57DE2B21CA49008A0ADA /* SpeedometerGauge */ = {
+			isa = PBXGroup;
+			children = (
+				20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */,
+			);
+			path = SpeedometerGauge;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

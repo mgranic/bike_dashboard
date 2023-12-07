@@ -8,16 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var currentSpeed = 10.0
+    
+    @State var currentSpeed = 60.0
     var body: some View {
         VStack {
             VStack {
                 ZStack {
-                    SpeedometerGauge(extendedRange: false, startAngleDegrees: -180, endAngleDegrees: 0, speed: $currentSpeed)
-                        .stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 14)
-                    SpeedometerGauge(extendedRange: true, startAngleDegrees: 0, endAngleDegrees: currentSpeed, speed: $currentSpeed)
-                        .rotation(Angle(degrees: 180))
-                        .stroke(Color.red, lineWidth: 14)
+                    VStack {
+                        Spacer(minLength: 200)
+                        SpeedometerGauge(isMoovable: false, startAngleDegrees: -180, endAngleDegrees: 0, speed: $currentSpeed)
+                            .stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 30)
+                    }
+                    VStack {
+                        Spacer(minLength: 200)
+                        SpeedometerGauge(isMoovable: true, startAngleDegrees: 0, endAngleDegrees: currentSpeed, speed: $currentSpeed)
+                            .rotation(Angle(degrees: 180))
+                           .stroke(Color.red, lineWidth: 20)
+                           //.animation(.linear, value: 0.1)
+                    }
+                    VStack {
+                        Text("\(currentSpeed, specifier: "%.f") km/h")
+                            .font(.largeTitle)
+                    }
                 }
             }
         }
