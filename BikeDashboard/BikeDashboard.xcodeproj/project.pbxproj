@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		20C8E6892B1FAEDE006A9BEA /* SpeedometerGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */; };
+		20DACE632B24535B00E5DE2D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DACE622B24535B00E5DE2D /* LocationManager.swift */; };
 		20EB94B42B1E59A700DF386D /* BikeDashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB94B32B1E59A700DF386D /* BikeDashboardApp.swift */; };
 		20EB94B62B1E59A700DF386D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB94B52B1E59A700DF386D /* ContentView.swift */; };
 		20EB94B82B1E59A800DF386D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20EB94B72B1E59A800DF386D /* Assets.xcassets */; };
@@ -35,7 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20C830F52B26074500922154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerGauge.swift; sourceTree = "<group>"; };
+		20DACE622B24535B00E5DE2D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		20EB94B02B1E59A700DF386D /* BikeDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20EB94B32B1E59A700DF386D /* BikeDashboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeDashboardApp.swift; sourceTree = "<group>"; };
 		20EB94B52B1E59A700DF386D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 		20EB94B22B1E59A700DF386D /* BikeDashboard */ = {
 			isa = PBXGroup;
 			children = (
+				20C830F52B26074500922154 /* Info.plist */,
 				20C8E68A2B1FB98F006A9BEA /* View */,
 				20C8E6872B1FAE9F006A9BEA /* ViewModel */,
 				20EB94B32B1E59A700DF386D /* BikeDashboardApp.swift */,
@@ -150,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */,
+				20DACE622B24535B00E5DE2D /* LocationManager.swift */,
 			);
 			path = SpeedometerGauge;
 			sourceTree = "<group>";
@@ -284,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20DACE632B24535B00E5DE2D /* LocationManager.swift in Sources */,
 				20C8E6892B1FAEDE006A9BEA /* SpeedometerGauge.swift in Sources */,
 				20EB94B62B1E59A700DF386D /* ContentView.swift in Sources */,
 				20EB94B42B1E59A700DF386D /* BikeDashboardApp.swift in Sources */,
@@ -453,6 +459,10 @@
 				DEVELOPMENT_TEAM = 6LP5U8F7VW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BikeDashboard/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "need loc 2";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "need loc";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "need loc 3";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -482,6 +492,10 @@
 				DEVELOPMENT_TEAM = 6LP5U8F7VW;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BikeDashboard/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "need loc 2";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "need loc";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "need loc 3";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

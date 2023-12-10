@@ -8,19 +8,12 @@
 import Foundation
 import SwiftUI
 import Dispatch
-//import CoreMotion
+import CoreLocation
 
-final class SpeedometerGauge: Shape {
+final class SpeedometerGauge: NSObject, Shape, CLLocationManagerDelegate {
     @Binding var currentSpeed: Double
-    
-    var animatableData: Double {
-        get {
-            currentSpeed
-        }
-        set {
-            currentSpeed = newValue
-        }
-    }
+    var locationManager = CLLocationManager()
+    static var monitorTimer: Timer?
     
     //var extendedRange: Bool = false
     var startAngleDegrees: Double = 0.0
@@ -29,29 +22,76 @@ final class SpeedometerGauge: Shape {
     //private let locationManager = CLLocationManager()
     
     init(isMoovable: Bool, startAngleDegrees: Double, endAngleDegrees: Double, speed: Binding<Double>) {
-        //self.extendedRange = extendedRange
         self.startAngleDegrees = startAngleDegrees
         self.endAngleDegrees = endAngleDegrees
         self._currentSpeed = speed
+        super.init()
         if (isMoovable == true) {
+            setupLocationManager()
             monitorSpeed()
-           // let locationManager = CLLocationManager()
-           // // Get the current location
-           // if let currentLocation = locationManager.location {
-           // // Get the speed in meters per second
-           // let speed = currentLocation.speed
-           // // Convert the speed to kilometers per hour
-           // self.currentSpeed = speed * 3.6
-           // }
         }
     }
     
-    //private let speedometerRange50: Int = 50
-    //private let speedometerRange200: Int = 200
-    //
-    //private var degreesPerKmh: Double {
-    //    180 / Double((extendedRange ? speedometerRange200 : speedometerRange50))
-    //}
+    func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        //// Check if the app has already been authorized
+        //if CLLocationManager.locationServicesEnabled() {
+        //    locationManager.requestAlwaysAuthorization()
+        //    // You can also use `requestAlwaysAuthorization` if needed.
+        //} else {
+        //    // Handle the case where location services are not enabled on the device.
+        //    print("Location services are not enabled.")
+        //}
+    }
+    
+    func startUpdatingLocation() {
+        locationManager.startUpdatingLocation()
+    }
+
+    func stopUpdatingLocation() {
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {     // Needed for request
+        print("Error: *** \(error.localizedDescription) ***")
+       }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation], didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        
+        if status == .authorizedAlways {
+            // Start updating the user's location
+            locationManager.startUpdatingLocation()
+        } else {
+            // Display an error message
+        }
+        
+        if let location = locations.last {
+            currentSpeed = (location.speed * 3.6) // transform from m/s to km/h
+        }
+        
+        //switch status {
+        //    case .authorizedAlways:
+        //    if let location = locations.last {
+        //        currentSpeed = (location.speed * 3.6) // transform from m/s to km/h
+        //    }
+        //        break
+        //    case .denied:
+        //        print("Location access denied")
+        //        break
+        //    case .notDetermined:
+        //        manager.requestAlwaysAuthorization()
+        //        break
+        //    case .restricted:
+        //        print("Location access restricted")
+        //        break
+        //    default:
+        //        print("Unrecognized value")
+        //    }
+    }
     
     func path(in rect: CGRect) -> Path {
         let diameter = min(rect.size.width, rect.size.height) - 24.0
@@ -66,17 +106,35 @@ final class SpeedometerGauge: Shape {
     func monitorSpeed() {
         let timerQUeue = DispatchQueue(label: "Update sppedometer", qos: .userInteractive)
         
+        
+        
         timerQUeue.sync {
-            Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateSpeed), userInfo: nil, repeats: false)
+            if (SpeedometerGauge.monitorTimer == nil) {
+                SpeedometerGauge.monitorTimer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(updateSpeed), userInfo: nil, repeats: true)
+            }
+            
         }
     }
     
     @objc func updateSpeed() {
-        currentSpeed += 1
-        if (currentSpeed > 180) {
-            currentSpeed = 0
+            //currentSpeed += 1
+            //if (currentSpeed > 180) {
+            //    currentSpeed = 0
+            //}
+        
+        print("locationManager.authorizationStatus = \(locationManager.authorizationStatus)")
+       if locationManager.authorizationStatus == .authorizedAlways {
+                // Start monitoring speed
+           if let currentLocation = self.locationManager.location {
+               self.currentSpeed = Double(currentLocation.speed) * 3.6
+           } else {
+               self.currentSpeed = 0.0
+           }
+        } else {
+            // Request authorization from the user
+            self.locationManager.requestAlwaysAuthorization()
+            //self.locationManager.requestWhenInUseAuthorization()
         }
+        
     }
-    
-    
 }

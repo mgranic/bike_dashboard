@@ -3,13 +3,15 @@
 //  BikeDashboard
 //
 //  Created by Mate Granic on 04.12.2023..
-//fdvf
+//
 
 import SwiftUI
+import CoreLocation
 
 struct ContentView: View {
     
     @State var currentSpeed = 60.0
+    //let locationManager = CLLocationManager()
     var body: some View {
         VStack {
             VStack {
@@ -23,12 +25,17 @@ struct ContentView: View {
                         Spacer(minLength: 200)
                         SpeedometerGauge(isMoovable: true, startAngleDegrees: 0, endAngleDegrees: currentSpeed, speed: $currentSpeed)
                             .rotation(Angle(degrees: 180))
-                           .stroke(Color.red, lineWidth: 20)
-                           //.animation(.linear, value: 0.1)
+                            .stroke(Color.red, lineWidth: 20)
+                            //.animation(.linear, value: 0.1)
+                        
                     }
                     VStack {
                         Text("\(currentSpeed, specifier: "%.f") km/h")
                             .font(.largeTitle)
+                        //Button("Request Always Location Permission") {
+                        //
+                        //    locationManager.requestAlwaysAuthorization()
+                        //}
                     }
                 }
             }
