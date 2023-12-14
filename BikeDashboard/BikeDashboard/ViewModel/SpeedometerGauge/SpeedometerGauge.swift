@@ -51,7 +51,6 @@ final class SpeedometerGauge: NSObject, Shape, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]) {
     
         if let location = locations.last {
-            
             // set speed to 0 if negative number is detected
             let speed = ((location.speed < 0.0) ? 0.0 : location.speed)
             self.currentSpeed = speed * mpsToKmh // transform from m/s to km/h

@@ -11,7 +11,6 @@ import CoreLocation
 struct ContentView: View {
     
     @State var currentSpeed = 60.0
-    //let locationManager = CLLocationManager()
     var body: some View {
         VStack {
             VStack {
@@ -30,7 +29,7 @@ struct ContentView: View {
                         
                     }
                     VStack {
-                        Text("\(currentSpeed, specifier: "%.f") km/h")
+                        Text("\(currentSpeed, specifier: "%.1f") km/h")
                             .font(.largeTitle)
                         //Button("Request Always Location Permission") {
                         //

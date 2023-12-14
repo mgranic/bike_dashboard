@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		20C8E6892B1FAEDE006A9BEA /* SpeedometerGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */; };
-		20DACE632B24535B00E5DE2D /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DACE622B24535B00E5DE2D /* LocationManager.swift */; };
 		20EB94B42B1E59A700DF386D /* BikeDashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB94B32B1E59A700DF386D /* BikeDashboardApp.swift */; };
 		20EB94B62B1E59A700DF386D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB94B52B1E59A700DF386D /* ContentView.swift */; };
 		20EB94B82B1E59A800DF386D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20EB94B72B1E59A800DF386D /* Assets.xcassets */; };
@@ -38,7 +37,6 @@
 /* Begin PBXFileReference section */
 		20C830F52B26074500922154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerGauge.swift; sourceTree = "<group>"; };
-		20DACE622B24535B00E5DE2D /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		20EB94B02B1E59A700DF386D /* BikeDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20EB94B32B1E59A700DF386D /* BikeDashboardApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeDashboardApp.swift; sourceTree = "<group>"; };
 		20EB94B52B1E59A700DF386D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -154,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */,
-				20DACE622B24535B00E5DE2D /* LocationManager.swift */,
 			);
 			path = SpeedometerGauge;
 			sourceTree = "<group>";
@@ -289,7 +286,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20DACE632B24535B00E5DE2D /* LocationManager.swift in Sources */,
 				20C8E6892B1FAEDE006A9BEA /* SpeedometerGauge.swift in Sources */,
 				20EB94B62B1E59A700DF386D /* ContentView.swift in Sources */,
 				20EB94B42B1E59A700DF386D /* BikeDashboardApp.swift in Sources */,
