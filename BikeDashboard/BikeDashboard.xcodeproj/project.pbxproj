@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20B5CA592B2AF12A002C0145 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5CA582B2AF12A002C0145 /* LocationManager.swift */; };
 		20C8E6892B1FAEDE006A9BEA /* SpeedometerGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */; };
 		20EB94B42B1E59A700DF386D /* BikeDashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB94B32B1E59A700DF386D /* BikeDashboardApp.swift */; };
 		20EB94B62B1E59A700DF386D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB94B52B1E59A700DF386D /* ContentView.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20B5CA582B2AF12A002C0145 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		20C830F52B26074500922154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerGauge.swift; sourceTree = "<group>"; };
 		20EB94B02B1E59A700DF386D /* BikeDashboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeDashboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */,
+				20B5CA582B2AF12A002C0145 /* LocationManager.swift */,
 			);
 			path = SpeedometerGauge;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20B5CA592B2AF12A002C0145 /* LocationManager.swift in Sources */,
 				20C8E6892B1FAEDE006A9BEA /* SpeedometerGauge.swift in Sources */,
 				20EB94B62B1E59A700DF386D /* ContentView.swift in Sources */,
 				20EB94B42B1E59A700DF386D /* BikeDashboardApp.swift in Sources */,
