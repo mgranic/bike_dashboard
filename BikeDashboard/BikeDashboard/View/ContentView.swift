@@ -10,8 +10,6 @@ import CoreLocation
 
 struct ContentView: View {
     
-    //@State var currentSpeed: Double = 60.0
-    @State var totalDistance: Double = 0.0
     @StateObject var locationManager = LocationManager()
     var body: some View {
         VStack {
@@ -19,18 +17,14 @@ struct ContentView: View {
                 ZStack {
                     VStack {
                         Spacer(minLength: 200)
-                        SpeedometerGauge(isMoovable: false, startAngleDegrees: -180, endAngleDegrees: 0, speed: locationManager.currentSpeed)
+                        SpeedometerGauge(startAngleDegrees: -180, endAngleDegrees: 0)
                             .stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 30)
                     }
                     VStack {
                         Spacer(minLength: 200)
-                        SpeedometerGauge(isMoovable: true, startAngleDegrees: 0, endAngleDegrees: locationManager.currentSpeed, speed: locationManager.currentSpeed)
+                        SpeedometerGauge(startAngleDegrees: 0, endAngleDegrees: locationManager.currentSpeed)
                             .rotation(Angle(degrees: 180))
                             .stroke(Color.red, lineWidth: 20)
-                            .onAppear {
-                                locationManager.startLocationMonitoring()
-                            }
-                            //.animation(.linear, value: 0.1)
                         
                     }
                     VStack {
@@ -38,10 +32,13 @@ struct ContentView: View {
                             .font(.largeTitle)
                         HStack {
                             Text("Total distance:")
-                            Text("\(totalDistance, specifier: "%.2f")")
+                            Text("\(locationManager.totalDistance, specifier: "%.2f")")
                         }
                     }
                 }
+            }
+            .onAppear {
+                locationManager.startLocationMonitoring()
             }
         }
         .padding()

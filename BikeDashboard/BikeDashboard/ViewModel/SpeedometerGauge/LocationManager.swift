@@ -11,13 +11,19 @@ import SwiftUI
 
 class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var currentSpeed: Double
+    @Published var totalDistance: Double
     var locationManager: CLLocationManager
     
-    let mpsToKmh = 3.6      // transform from m/s to km/h
+    private var lastLocation: CLLocation?
+
+    
+    private let mpsToKmh = 3.6      // transform from m/s to km/h
+    private let mToKm = 1000.0      // meters to kilometers
     
     override init() {
         locationManager = CLLocationManager()
-        self.currentSpeed = 100.0
+        self.currentSpeed = 0.0
+        self.totalDistance = 0.0
         super.init()
         //setupLocationManager()
     }
@@ -49,6 +55,13 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
             // set speed to 0 if negative number is detected
             let speed = ((location.speed < 0.0) ? 0.0 : location.speed)
             self.currentSpeed = speed * mpsToKmh // transform from m/s to km/h
+            
+            if (self.lastLocation == nil) {
+                self.lastLocation = location
+            } else {
+                self.totalDistance = totalDistance + ((location.distance(from: lastLocation!)) / mToKm)
+                self.lastLocation = location
+            }
         }
     }
 }
