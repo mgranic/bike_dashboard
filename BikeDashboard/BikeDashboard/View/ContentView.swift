@@ -9,7 +9,7 @@ import SwiftUI
 import CoreLocation
 
 struct ContentView: View {
-    
+    @Environment(\.scenePhase) private var scenePhase
     @StateObject var locationManager = LocationManager()
     var body: some View {
         VStack {
@@ -41,6 +41,15 @@ struct ContentView: View {
                 locationManager.startLocationMonitoring()
             }
         }
+        .onChange(of: scenePhase, {
+            if (scenePhase == .background) {
+                // store total distance in UserDefauls
+                locationManager.saveTotalDistance()
+            } else if (scenePhase == .active) {
+                // read data distance from userDefaults
+                locationManager.loadTotalDistance()
+            }
+        })
         .padding()
     }
 }

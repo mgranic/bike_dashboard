@@ -25,7 +25,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         self.currentSpeed = 0.0
         self.totalDistance = 0.0
         super.init()
-        //setupLocationManager()
+        setupLocationManager()
     }
     
     // initialize location manager
@@ -37,7 +37,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     // Start monitoring the location and all the related data (like speed)
     func startLocationMonitoring() {
-        setupLocationManager()
+        //setupLocationManager()
         locationManager.startUpdatingLocation()
     }
     
@@ -63,5 +63,17 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
                 self.lastLocation = location
             }
         }
+    }
+    
+    // store total distance in UserDefaults
+    func saveTotalDistance() {
+        let defaults = UserDefaults.standard
+        defaults.setValue(self.totalDistance, forKey: "odometer_value")
+    }
+    
+    // read total distance from user defaults
+    func loadTotalDistance() {
+        let storedDistance = UserDefaults.standard.double(forKey: "odometer_value")
+        self.totalDistance = (storedDistance == 0) ? self.totalDistance : storedDistance
     }
 }
