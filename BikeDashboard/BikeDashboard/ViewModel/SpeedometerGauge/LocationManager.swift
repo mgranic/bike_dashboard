@@ -12,6 +12,7 @@ import SwiftUI
 class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var currentSpeed: Double
     @Published var totalDistance: Double
+    @Published var tripDistance: Double
     var locationManager: CLLocationManager
     
     private var lastLocation: CLLocation?
@@ -24,6 +25,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
         locationManager = CLLocationManager()
         self.currentSpeed = 0.0
         self.totalDistance = 0.0
+        self.tripDistance = 0.0
         super.init()
         setupLocationManager()
     }
@@ -59,7 +61,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
             if (self.lastLocation == nil) {
                 self.lastLocation = location
             } else {
-                self.totalDistance = totalDistance + ((location.distance(from: lastLocation!)) / mToKm)
+                let distanceFromLastLocation = ((location.distance(from: lastLocation!)) / mToKm)
+                self.totalDistance += distanceFromLastLocation
+                self.tripDistance += distanceFromLastLocation
                 self.lastLocation = location
             }
         }
@@ -75,5 +79,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     func loadTotalDistance() {
         let storedDistance = UserDefaults.standard.double(forKey: "odometer_value")
         self.totalDistance = (storedDistance == 0) ? self.totalDistance : storedDistance
+    }
+    
+    func resetTrip() {
+        self.tripDistance = 0.0
     }
 }

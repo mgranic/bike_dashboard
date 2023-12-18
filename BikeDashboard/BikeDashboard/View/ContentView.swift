@@ -16,12 +16,12 @@ struct ContentView: View {
             VStack {
                 ZStack {
                     VStack {
-                        Spacer(minLength: 200)
+                        Spacer(minLength: 150)
                         SpeedometerGauge(startAngleDegrees: -180, endAngleDegrees: 0)
                             .stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 30)
                     }
                     VStack {
-                        Spacer(minLength: 200)
+                        Spacer(minLength: 150)
                         SpeedometerGauge(startAngleDegrees: 0, endAngleDegrees: locationManager.currentSpeed)
                             .rotation(Angle(degrees: 180))
                             .stroke(Color.red, lineWidth: 20)
@@ -31,14 +31,23 @@ struct ContentView: View {
                         Text("\(locationManager.currentSpeed, specifier: "%.1f") km/h")
                             .font(.largeTitle)
                         HStack {
-                            Text("Total distance:")
+                            Text("Odometer:")
                             Text("\(locationManager.totalDistance, specifier: "%.2f")")
                         }
+                        HStack {
+                            Text("Trip")
+                            Text("\(locationManager.tripDistance, specifier: "%.2f")")
+                        }
+                        Button("Reset trip") {
+                            locationManager.resetTrip()
+                        }
+                        .buttonStyle(.borderedProminent)
                     }
                 }
             }
             .onAppear {
                 locationManager.startLocationMonitoring()
+                UIApplication.shared.isIdleTimerDisabled = true
             }
         }
         .onChange(of: scenePhase, {

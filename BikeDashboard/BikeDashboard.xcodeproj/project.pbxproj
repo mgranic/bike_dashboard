@@ -87,6 +87,7 @@
 		20C8E68A2B1FB98F006A9BEA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */,
 				20EB94B52B1E59A700DF386D /* ContentView.swift */,
 			);
 			path = View;
@@ -153,7 +154,6 @@
 		20EE57DE2B21CA49008A0ADA /* SpeedometerGauge */ = {
 			isa = PBXGroup;
 			children = (
-				20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */,
 				20B5CA582B2AF12A002C0145 /* LocationManager.swift */,
 			);
 			path = SpeedometerGauge;
