@@ -9,7 +9,7 @@ import Foundation
 import CoreLocation
 import SwiftUI
 
-class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
+final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var currentSpeed: Double
     @Published var totalDistance: Double
     @Published var tripDistance: Double
@@ -46,7 +46,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     // This function has to be implemented in order to comply with CLLocationManagerDelegate
     // It is executed if reading of speed from locationManager fails
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {     // Needed for request
-        print("Error: *** \(error.localizedDescription) ***")
+        Alert(title: Text("Error: *** \(error.localizedDescription) ***"))
     }
     
     // This function has to be implemented in order to comply with CLLocationManagerDelegate
@@ -78,9 +78,12 @@ class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     // read total distance from user defaults
     func loadTotalDistance() {
         let storedDistance = UserDefaults.standard.double(forKey: "odometer_value")
-        self.totalDistance = (storedDistance == 0) ? self.totalDistance : storedDistance
+        
+        // if total distance is greater than the one stored in the UserDefaults, use total distance
+        self.totalDistance = (self.totalDistance > storedDistance) ? self.totalDistance : storedDistance
     }
     
+    // reset current trip
     func resetTrip() {
         self.tripDistance = 0.0
     }
