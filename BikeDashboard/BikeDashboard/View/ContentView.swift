@@ -6,22 +6,23 @@
 //
 
 import SwiftUI
-import CoreLocation
+import MapKit
 
 struct ContentView: View {
     @Environment(\.scenePhase) private var scenePhase
     @StateObject var locationManager = LocationManager()
+    @State private var mapRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     var body: some View {
         VStack {
             VStack {
                 ZStack {
                     VStack {
-                        Spacer(minLength: 150)
+                        Spacer(minLength: 50)
                         SpeedometerGauge(startAngleDegrees: -180, endAngleDegrees: 0)
                             .stroke(/*@START_MENU_TOKEN@*/Color.blue/*@END_MENU_TOKEN@*/, lineWidth: 30)
                     }
                     VStack {
-                        Spacer(minLength: 150)
+                        Spacer(minLength: 50)
                         SpeedometerGauge(startAngleDegrees: 0, endAngleDegrees: locationManager.currentSpeed)
                             .rotation(Angle(degrees: 180))
                             .stroke(Color.red, lineWidth: 20)
@@ -32,11 +33,11 @@ struct ContentView: View {
                             .font(.largeTitle)
                         HStack {
                             Text("Odometer:")
-                            Text("\(locationManager.totalDistance, specifier: "%.2f")")
+                            Text("\(locationManager.totalDistance, specifier: "%.2f") km")
                         }
                         HStack {
                             Text("Trip")
-                            Text("\(locationManager.tripDistance, specifier: "%.2f")")
+                            Text("\(locationManager.tripDistance, specifier: "%.2f") km")
                         }
                         Button("Reset trip") {
                             locationManager.resetTrip()
@@ -44,6 +45,7 @@ struct ContentView: View {
                         .buttonStyle(.borderedProminent)
                     }
                 }
+                Map(coordinateRegion: $mapRegion)
             }
             .onAppear {
                 locationManager.startLocationMonitoring()
