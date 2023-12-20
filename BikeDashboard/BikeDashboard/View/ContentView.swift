@@ -11,7 +11,6 @@ import MapKit
 struct ContentView: View {
     @Environment(\.scenePhase) private var scenePhase
     @StateObject var locationManager = LocationManager()
-    @State private var mapRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     var body: some View {
         VStack {
             VStack {
@@ -45,7 +44,7 @@ struct ContentView: View {
                         .buttonStyle(.borderedProminent)
                     }
                 }
-                Map(coordinateRegion: $mapRegion)
+                Map(coordinateRegion: $locationManager.mapRegion)
             }
             .onAppear {
                 locationManager.startLocationMonitoring()

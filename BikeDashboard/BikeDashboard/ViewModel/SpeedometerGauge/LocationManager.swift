@@ -8,11 +8,13 @@
 import Foundation
 import CoreLocation
 import SwiftUI
+import MapKit
 
 final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var currentSpeed: Double
     @Published var totalDistance: Double
     @Published var tripDistance: Double
+    @Published var mapRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     var locationManager: CLLocationManager
     
     private var lastLocation: CLLocation?
@@ -58,6 +60,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
             let speed = ((location.speed < 0.0) ? 0.0 : location.speed)
             self.currentSpeed = speed * mpsToKmh // transform from m/s to km/h
             
+            // if location is valid, calculate distance traveled
             if (self.lastLocation == nil) {
                 self.lastLocation = location
             } else {
@@ -66,6 +69,10 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
                 self.tripDistance += distanceFromLastLocation
                 self.lastLocation = location
             }
+            
+            // update map
+            mapRegion.center.latitude = location.coordinate.latitude
+            mapRegion.center.longitude = location.coordinate.longitude
         }
     }
     
