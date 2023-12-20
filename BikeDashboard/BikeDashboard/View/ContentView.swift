@@ -44,7 +44,8 @@ struct ContentView: View {
                         .buttonStyle(.borderedProminent)
                     }
                 }
-                Map(coordinateRegion: $locationManager.mapRegion)
+                Map(coordinateRegion: $locationManager.mapRegion, showsUserLocation: true,
+                    userTrackingMode: .constant(.follow))
             }
             .onAppear {
                 locationManager.startLocationMonitoring()
