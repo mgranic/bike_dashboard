@@ -14,8 +14,14 @@ struct MainScreen: View {
     var body: some View {
         VStack {
             VStack {
-                SpeedometerDashboard()
-                    .environmentObject(locationManager)
+                TabView {
+                    SpeedometerDashboard()
+                        .environmentObject(locationManager)
+                    DashboardDataScreen()
+                        .environmentObject(locationManager)
+                }
+                .tabViewStyle(.page)
+                
             Map(coordinateRegion: $locationManager.mapRegion, showsUserLocation: true,
                 userTrackingMode: .constant(.follow))
             }

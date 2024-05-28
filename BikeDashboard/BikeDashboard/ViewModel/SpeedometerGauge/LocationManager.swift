@@ -14,6 +14,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
     @Published var currentSpeed: Double
     @Published var totalDistance: Double
     @Published var tripDistance: Double
+    @Published var pace: Double
     @Published var mapRegion: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     var locationManager: CLLocationManager
     
@@ -28,27 +29,20 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
         self.currentSpeed = 0.0
         self.totalDistance = 0.0
         self.tripDistance = 0.0
+        self.pace = 0.0
         super.init()
         setupLocationManager()
     }
     
-    // initialize location manager
-    func setupLocationManager() {
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
-    }
-    
     // Start monitoring the location and all the related data (like speed)
     func startLocationMonitoring() {
-        //setupLocationManager()
         locationManager.startUpdatingLocation()
     }
     
     // This function has to be implemented in order to comply with CLLocationManagerDelegate
     // It is executed if reading of speed from locationManager fails
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {     // Needed for request
-        Alert(title: Text("Error: *** \(error.localizedDescription) ***"))
+        //Alert(title: Text("Error: *** \(error.localizedDescription) ***"))
     }
     
     // This function has to be implemented in order to comply with CLLocationManagerDelegate
@@ -59,6 +53,8 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
             // set speed to 0 if negative number is detected
             let speed = ((location.speed < 0.0) ? 0.0 : location.speed)
             self.currentSpeed = speed * mpsToKmh // transform from m/s to km/h
+            
+           calculatePace()
             
             // if location is valid, calculate distance traveled
             if (self.lastLocation == nil) {
@@ -93,5 +89,22 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
     // reset current trip
     func resetTrip() {
         self.tripDistance = 0.0
+    }
+    /**************************************************************PRIVATE FUNCTIONS************************************************************/
+    // initialize location manager
+    private func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+    }
+    
+    // calculate current pace
+    private func calculatePace() {
+        // if current speed is zero or less, avoid division with that number (pace = 0.0)
+        if (currentSpeed <= 0.0) {
+            self.pace = 0.0
+        } else {
+            self.pace = 60 / currentSpeed // pace is minutes/km (60 minutes in an hour)
+        }
     }
 }
