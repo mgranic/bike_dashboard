@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftData
 
 @main
 struct BikeDashboardApp: App {
@@ -14,7 +13,6 @@ struct BikeDashboardApp: App {
         WindowGroup {
             MainScreen()
         }
-        .modelContainer(for: [SettingsModel.self])
     }
 }
     

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct SettingsScreen: View {
-    @Environment(\.modelContext) var modelCtx
     
     var body: some View {
         Text("settings screen")

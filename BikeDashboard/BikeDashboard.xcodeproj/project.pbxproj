@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		20AA078A2C05FE8100DDD1A7 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AA07892C05FE8100DDD1A7 /* SettingsScreen.swift */; };
-		20AA078D2C05FEAF00DDD1A7 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AA078C2C05FEAF00DDD1A7 /* SettingsModel.swift */; };
 		20B5CA592B2AF12A002C0145 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5CA582B2AF12A002C0145 /* LocationManager.swift */; };
 		20C8E6892B1FAEDE006A9BEA /* SpeedometerGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */; };
 		20EA1C452C05EBE7000955A5 /* SpeedometerDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EA1C442C05EBE7000955A5 /* SpeedometerDashboard.swift */; };
@@ -41,7 +40,6 @@
 
 /* Begin PBXFileReference section */
 		20AA07892C05FE8100DDD1A7 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
-		20AA078C2C05FEAF00DDD1A7 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		20B5CA582B2AF12A002C0145 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		20C830F52B26074500922154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerGauge.swift; sourceTree = "<group>"; };
@@ -103,14 +101,6 @@
 			path = screens;
 			sourceTree = "<group>";
 		};
-		20AA078B2C05FE9000DDD1A7 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				20AA078C2C05FEAF00DDD1A7 /* SettingsModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		20C8E6872B1FAE9F006A9BEA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,7 +141,6 @@
 		20EB94B22B1E59A700DF386D /* BikeDashboard */ = {
 			isa = PBXGroup;
 			children = (
-				20AA078B2C05FE9000DDD1A7 /* Model */,
 				20C830F52B26074500922154 /* Info.plist */,
 				20C8E68A2B1FB98F006A9BEA /* View */,
 				20C8E6872B1FAE9F006A9BEA /* ViewModel */,
@@ -325,7 +314,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20AA078D2C05FEAF00DDD1A7 /* SettingsModel.swift in Sources */,
 				20B5CA592B2AF12A002C0145 /* LocationManager.swift in Sources */,
 				20AA078A2C05FE8100DDD1A7 /* SettingsScreen.swift in Sources */,
 				20C8E6892B1FAEDE006A9BEA /* SpeedometerGauge.swift in Sources */,
