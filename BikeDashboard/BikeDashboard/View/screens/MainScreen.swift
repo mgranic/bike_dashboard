@@ -17,7 +17,7 @@ struct MainScreen: View {
                 TabView {
                     SpeedometerDashboard()
                         .environmentObject(locationManager)
-                    DashboardDataScreen()
+                    DashboardData()
                         .environmentObject(locationManager)
                 }
                 .tabViewStyle(.page)
@@ -39,6 +39,11 @@ struct MainScreen: View {
                 locationManager.loadTotalDistance()
             }
         })
+        .toolbar {
+            NavigationLink(destination: SettingsScreen()) {
+                Text("Settings")
+            }
+        }
         .padding()
     }
 }

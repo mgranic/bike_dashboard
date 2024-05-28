@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DashboardDataScreen: View {
+struct DashboardData: View {
     @EnvironmentObject var locationManager: LocationManager
     
     var body: some View {
@@ -16,5 +16,5 @@ struct DashboardDataScreen: View {
 }
 
 #Preview {
-    DashboardDataScreen()
+    DashboardData()
 }
