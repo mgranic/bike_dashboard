@@ -12,37 +12,43 @@ struct MainScreen: View {
     @Environment(\.scenePhase) private var scenePhase
     @StateObject var locationManager = LocationManager()
     var body: some View {
-        VStack {
+        NavigationStack {
             VStack {
-                TabView {
-                    SpeedometerDashboard()
-                        .environmentObject(locationManager)
-                    DashboardData()
-                        .environmentObject(locationManager)
+                VStack {
+                    TabView {
+                        SpeedometerDashboard()
+                            .environmentObject(locationManager)
+                        DashboardData()
+                            .environmentObject(locationManager)
+                    }
+                    .tabViewStyle(.page)
+                    
+                    Map(coordinateRegion: $locationManager.mapRegion, showsUserLocation: true,
+                        userTrackingMode: .constant(.follow))
                 }
-                .tabViewStyle(.page)
-                
-            Map(coordinateRegion: $locationManager.mapRegion, showsUserLocation: true,
-                userTrackingMode: .constant(.follow))
+                .onAppear {
+                    locationManager.startLocationMonitoring()
+                    UIApplication.shared.isIdleTimerDisabled = true
+                }
             }
-            .onAppear {
-                locationManager.startLocationMonitoring()
-                UIApplication.shared.isIdleTimerDisabled = true
+            .toolbar {
+                Menu {
+                    NavigationLink(destination: SettingsScreen()) {
+                        Text("Settings")
+                    }
+                } label: {
+                    Label("Menu", systemImage: "ellipsis.circle")
+                }
             }
-        }
-        .onChange(of: scenePhase, {
-            if (scenePhase == .background) {
-                // store total distance in UserDefauls
-                locationManager.saveTotalDistance()
-            } else if (scenePhase == .active) {
-                // read data distance from userDefaults
-                locationManager.loadTotalDistance()
-            }
-        })
-        .toolbar {
-            NavigationLink(destination: SettingsScreen()) {
-                Text("Settings")
-            }
+            .onChange(of: scenePhase, {
+                if (scenePhase == .background) {
+                    // store total distance in UserDefauls
+                    locationManager.saveTotalDistance()
+                } else if (scenePhase == .active) {
+                    // read data distance from userDefaults
+                    locationManager.loadTotalDistance()
+                }
+            })
         }
         .padding()
     }
