@@ -35,7 +35,9 @@ struct DashboardData: View {
                 .font(.title)
             
             Button(action: {
-                getHeartRate()
+                Task {
+                    await getHeartRate()
+                }
             }) {
                 Text("Get Heart Rate")
                     .font(.headline)
@@ -69,18 +71,23 @@ struct DashboardData: View {
             }
         }
     }
-    private func getHeartRate() {
+    private func getHeartRate() async {
         let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate)!
-        let date = Date()
-        let predicate = HKQuery.predicateForSamples(withStart: date.addingTimeInterval(-36000), end: date, options: .strictEndDate)
-        let query = HKStatisticsQuery(quantityType: heartRateType, quantitySamplePredicate: predicate, options: .discreteAverage) { _, result, _ in
-            guard let result = result, let quantity = result.averageQuantity() else {
-                return
-            }
-            self.heartRate = quantity.doubleValue(for: HKUnit(from: "count/min"))
-        }
-        healthStore.execute(query)
-        }
+        
+        // Create the descriptor.
+        let descriptor = HKSampleQueryDescriptor(
+            predicates:[.quantitySample(type: heartRateType)],
+            sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)],
+            limit: 1)
+
+
+        // Launch the query and wait for the results.
+        // The system automatically sets results to [HKQuantitySample].
+        let results = try! await descriptor.result(for: healthStore)
+        
+        heartRate = results.first?.quantity.doubleValue(for: HKUnit(from: "count/min")) ?? -1.5
+        
+    }
 }
 
 #Preview {
