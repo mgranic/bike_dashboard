@@ -28,21 +28,19 @@ struct DashboardData: View {
         HKQuantityType(.heartRate)
     ]
     
+    let timer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         VStack {
             Text("Pace: \(locationManager.pace, specifier: "%.1f") min/km")
             Text("Heart Rate: \(heartRate, specifier: "%.0f")")
                 .font(.title)
-            
-            Button(action: {
-                Task {
-                    await getHeartRate()
+                .onReceive(timer) { input in
+                    guard authenticated else {return}
+                    Task {
+                        await getHeartRate()
+                    }
                 }
-            }) {
-                Text("Get Heart Rate")
-                    .font(.headline)
-            }
-            .disabled(!authenticated)
         }
         // If HealthKit data is available, request authorization
         // when this view appears.
