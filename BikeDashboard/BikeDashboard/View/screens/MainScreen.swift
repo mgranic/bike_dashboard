@@ -11,6 +11,7 @@ import MapKit
 struct MainScreen: View {
     @Environment(\.scenePhase) private var scenePhase
     @StateObject var locationManager = LocationManager()
+    
     var body: some View {
         NavigationStack {
             VStack {
