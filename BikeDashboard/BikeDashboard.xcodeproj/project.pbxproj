@@ -88,9 +88,8 @@
 		20025A762C04D0E200F293AA /* widgets */ = {
 			isa = PBXGroup;
 			children = (
+				20D5861C2C09F0060022A4BD /* tabs */,
 				20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */,
-				20EA1C442C05EBE7000955A5 /* SpeedometerDashboard.swift */,
-				20EA1C462C05EFB7000955A5 /* DashboardData.swift */,
 			);
 			path = widgets;
 			sourceTree = "<group>";
@@ -119,6 +118,15 @@
 				20025A762C04D0E200F293AA /* widgets */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		20D5861C2C09F0060022A4BD /* tabs */ = {
+			isa = PBXGroup;
+			children = (
+				20EA1C442C05EBE7000955A5 /* SpeedometerDashboard.swift */,
+				20EA1C462C05EFB7000955A5 /* DashboardData.swift */,
+			);
+			path = tabs;
 			sourceTree = "<group>";
 		};
 		20E2546C2C0872C100AEC2DE /* Frameworks */ = {

@@ -56,14 +56,14 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
             
            calculatePace()
             
-            // if location is valid, calculate distance traveled
-            if (self.lastLocation == nil) {
-                self.lastLocation = location
-            } else {
+            // if this is first location obtained (no last location
+            if (lastLocation == nil) {
+                lastLocation = location
+            } else { // if location is valid, calculate distance traveled
                 let distanceFromLastLocation = ((location.distance(from: lastLocation!)) / mToKm)
-                self.totalDistance += distanceFromLastLocation
-                self.tripDistance += distanceFromLastLocation
-                self.lastLocation = location
+                totalDistance += distanceFromLastLocation
+                tripDistance += distanceFromLastLocation
+                lastLocation = location
             }
             
             // update map

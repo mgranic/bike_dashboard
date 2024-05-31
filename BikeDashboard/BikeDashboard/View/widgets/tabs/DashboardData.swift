@@ -79,11 +79,15 @@ struct DashboardData: View {
             limit: 1)
 
 
-        // Launch the query and wait for the results.
-        // The system automatically sets results to [HKQuantitySample].
-        let results = try! await descriptor.result(for: healthStore)
-        
-        heartRate = results.first?.quantity.doubleValue(for: HKUnit(from: "count/min")) ?? -1.5
+        do {
+            // Launch the query and wait for the results.
+            // The system automatically sets results to [HKQuantitySample].
+            let results = try await descriptor.result(for: healthStore)
+            
+            heartRate = results.first?.quantity.doubleValue(for: HKUnit(from: "count/min")) ?? -1.5
+        } catch {
+            fatalError("*** An error occurred while fetching health data: \(error) ***")
+        }
         
     }
 }
