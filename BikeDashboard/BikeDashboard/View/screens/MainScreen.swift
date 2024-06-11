@@ -24,8 +24,11 @@ struct MainScreen: View {
                     }
                     .tabViewStyle(.page)
                     
-                    Map(coordinateRegion: $locationManager.mapRegion, showsUserLocation: true,
-                        userTrackingMode: .constant(.follow))
+                    //Map(coordinateRegion: $locationManager.mapRegion, showsUserLocation: true,
+                    //    userTrackingMode: .constant(.follow))
+                    Map(position: .constant(MapCameraPosition.region(locationManager.mapRegion)), bounds: nil, interactionModes: .all, scope: nil) {
+                        UserAnnotation()
+                    }
                 }
                 .onAppear {
                     locationManager.startLocationMonitoring()

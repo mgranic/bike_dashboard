@@ -35,12 +35,6 @@ struct DashboardData: View {
             Text("Pace: \(locationManager.pace, specifier: "%.1f") min/km")
             Text("Heart Rate: \(heartRate, specifier: "%.0f")")
                 .font(.title)
-                .onReceive(timer) { input in
-                    guard authenticated else {return}
-                    Task {
-                        await getHeartRate()
-                    }
-                }
         }
         // If HealthKit data is available, request authorization
         // when this view appears.
@@ -66,6 +60,12 @@ struct DashboardData: View {
             case .failure(let error):
                 // Handle the error here.
                 fatalError("*** An error occurred while requesting authentication: \(error) ***")
+            }
+        }
+        .onReceive(timer) { input in
+            guard authenticated else {return}
+            Task {
+                await getHeartRate()
             }
         }
     }
