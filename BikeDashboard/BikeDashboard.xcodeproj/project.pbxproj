@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20A56BDD2C21ECC900AE9132 /* MainScreenUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A56BDC2C21ECC900AE9132 /* MainScreenUITest.swift */; };
 		20AA078A2C05FE8100DDD1A7 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AA07892C05FE8100DDD1A7 /* SettingsScreen.swift */; };
 		20B5CA592B2AF12A002C0145 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5CA582B2AF12A002C0145 /* LocationManager.swift */; };
 		20C8E6892B1FAEDE006A9BEA /* SpeedometerGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20A56BDC2C21ECC900AE9132 /* MainScreenUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenUITest.swift; sourceTree = "<group>"; };
 		20AA07892C05FE8100DDD1A7 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		20B5CA582B2AF12A002C0145 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		20C830F52B26074500922154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			children = (
 				20EB94CE2B1E59A900DF386D /* BikeDashboardUITests.swift */,
 				20EB94D02B1E59A900DF386D /* BikeDashboardUITestsLaunchTests.swift */,
+				20A56BDC2C21ECC900AE9132 /* MainScreenUITest.swift */,
 			);
 			path = BikeDashboardUITests;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A56BDD2C21ECC900AE9132 /* MainScreenUITest.swift in Sources */,
 				20EB94D12B1E59A900DF386D /* BikeDashboardUITestsLaunchTests.swift in Sources */,
 				20EB94CF2B1E59A900DF386D /* BikeDashboardUITests.swift in Sources */,
 			);
@@ -532,7 +536,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kingoapps.BikeDashboard;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kingoapps.BikeDashboard2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -570,7 +574,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kingoapps.BikeDashboard;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kingoapps.BikeDashboard2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

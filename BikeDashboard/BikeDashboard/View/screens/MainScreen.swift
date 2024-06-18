@@ -40,9 +40,11 @@ struct MainScreen: View {
                     NavigationLink(destination: SettingsScreen()) {
                         Text("Settings")
                     }
+                    .accessibilityIdentifier("SettingsMenuNavigationLink")
                 } label: {
                     Label("Menu", systemImage: "ellipsis.circle")
                 }
+                .accessibilityIdentifier("MainMenuButton")
             }
             .onChange(of: scenePhase, {
                 if (scenePhase == .background) {

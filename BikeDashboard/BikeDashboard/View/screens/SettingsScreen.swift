@@ -11,6 +11,7 @@ struct SettingsScreen: View {
     
     var body: some View {
         Text("settings screen")
+            .accessibilityIdentifier("SettingScreenStaticText")
     }
 }
 
