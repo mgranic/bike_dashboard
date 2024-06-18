@@ -50,11 +50,9 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:[CLLocation]) {
     
         if let location = locations.last {
-            // set speed to 0 if negative number is detected
-            let speed = ((location.speed < 0.0) ? 0.0 : location.speed)
-            self.currentSpeed = speed * mpsToKmh // transform from m/s to km/h
+            self.currentSpeed = calculateCurrentSpeed(location: location)
             
-           calculatePace()
+            self.pace = calculatePace(currSpeed: currentSpeed)
             
             // if this is first location obtained (no last location
             if (lastLocation == nil) {
@@ -99,12 +97,19 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
     }
     
     // calculate current pace
-    private func calculatePace() {
+    func calculatePace(currSpeed: Double) -> Double { // made public for unit testing
         // if current speed is zero or less, avoid division with that number (pace = 0.0)
-        if (currentSpeed <= 0.0) {
-            self.pace = 0.0
+        if (currSpeed <= 0.0) {
+            return 0.0
         } else {
-            self.pace = 60 / currentSpeed // pace is minutes/km (60 minutes in an hour)
+            return (60 / currSpeed) // pace is minutes/km (60 minutes in an hour)
         }
+    }
+    
+    // calculate current speed in km/h
+    private func calculateCurrentSpeed(location: CLLocation) -> Double {
+        // set speed to 0 if negative number is detected
+        let speed = ((location.speed < 0.0) ? 0.0 : location.speed)
+        return (speed * mpsToKmh) // transform from m/s to km/h
     }
 }

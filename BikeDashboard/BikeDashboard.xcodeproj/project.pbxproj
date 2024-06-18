@@ -10,6 +10,7 @@
 		20AA078A2C05FE8100DDD1A7 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AA07892C05FE8100DDD1A7 /* SettingsScreen.swift */; };
 		20B5CA592B2AF12A002C0145 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B5CA582B2AF12A002C0145 /* LocationManager.swift */; };
 		20C8E6892B1FAEDE006A9BEA /* SpeedometerGauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */; };
+		20CFCFF32C219743006E48F6 /* LocationManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CFCFF22C219743006E48F6 /* LocationManagerTest.swift */; };
 		20EA1C452C05EBE7000955A5 /* SpeedometerDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EA1C442C05EBE7000955A5 /* SpeedometerDashboard.swift */; };
 		20EA1C472C05EFB7000955A5 /* DashboardData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EA1C462C05EFB7000955A5 /* DashboardData.swift */; };
 		20EB94B42B1E59A700DF386D /* BikeDashboardApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20EB94B32B1E59A700DF386D /* BikeDashboardApp.swift */; };
@@ -43,6 +44,7 @@
 		20B5CA582B2AF12A002C0145 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		20C830F52B26074500922154 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		20C8E6882B1FAEDE006A9BEA /* SpeedometerGauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedometerGauge.swift; sourceTree = "<group>"; };
+		20CFCFF22C219743006E48F6 /* LocationManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerTest.swift; sourceTree = "<group>"; };
 		20E2546D2C0872C100AEC2DE /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
 		20E254722C0874A900AEC2DE /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		20E254742C08755B00AEC2DE /* BikeDashboard.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BikeDashboard.entitlements; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				20EB94C42B1E59A900DF386D /* BikeDashboardTests.swift */,
+				20CFCFF22C219743006E48F6 /* LocationManagerTest.swift */,
 			);
 			path = BikeDashboardTests;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20CFCFF32C219743006E48F6 /* LocationManagerTest.swift in Sources */,
 				20EB94C52B1E59A900DF386D /* BikeDashboardTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
