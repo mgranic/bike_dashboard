@@ -20,10 +20,14 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
     var locationManager: CLLocationManager
     
     private var lastLocation: CLLocation?
+    private var lastNotificationDIstance = 0.0
+    
 
     
     private let mpsToKmh = 3.6      // transform from m/s to km/h
     private let mToKm = 1000.0      // meters to kilometers
+    private let distanceNotificationStep = 2.0 // distance in km that should be alarmed to user
+    
     
     override init() {
         locationManager = CLLocationManager()
@@ -64,7 +68,11 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
                 tripDistance += distanceFromLastLocation
                 lastLocation = location
                 
-                if ((Int(tripDistance) % 5 == 0) && tripDistance != 0.0) {
+                // show notification for every 5 kilometers in current trip
+                if ((Int(tripDistance) % Int(distanceNotificationStep) == 0) &&
+                    (tripDistance != 0.0) &&
+                    ((tripDistance - lastNotificationDIstance) >= distanceNotificationStep)) {
+                    lastNotificationDIstance = tripDistance
                     showNotification(distanceTraveled: tripDistance)
                 }
                 
@@ -94,6 +102,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
     func resetTrip() {
         self.tripDistance = 0.0
     }
+    
     /**************************************************************PRIVATE FUNCTIONS************************************************************/
     // initialize location manager
     private func setupLocationManager() {
@@ -120,18 +129,13 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
     }
     
     private func showNotification(distanceTraveled: Double) {
+        print("++++++ SHOW NOTIFICATION EXECUTED ++++")
         let content = UNMutableNotificationContent()
         content.title = "Distance milestone"
         content.subtitle = "Current trip distance: \(distanceTraveled)"
         content.sound = UNNotificationSound.default
-
-        // show this notification five seconds from now
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-
-        // choose a random identifier
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-        // add our notification request
-        UNUserNotificationCenter.current().add(request)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
     }
 }
