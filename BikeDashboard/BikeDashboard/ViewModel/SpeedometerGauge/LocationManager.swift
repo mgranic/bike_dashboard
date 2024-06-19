@@ -9,6 +9,7 @@ import Foundation
 import CoreLocation
 import SwiftUI
 import MapKit
+import UserNotifications
 
 final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var currentSpeed: Double
@@ -62,6 +63,11 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
                 totalDistance += distanceFromLastLocation
                 tripDistance += distanceFromLastLocation
                 lastLocation = location
+                
+                if ((Int(tripDistance) % 5 == 0) && tripDistance != 0.0) {
+                    showNotification(distanceTraveled: tripDistance)
+                }
+                
             }
             
             // update map
@@ -111,5 +117,21 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
         // set speed to 0 if negative number is detected
         let speed = ((location.speed < 0.0) ? 0.0 : location.speed)
         return (speed * mpsToKmh) // transform from m/s to km/h
+    }
+    
+    private func showNotification(distanceTraveled: Double) {
+        let content = UNMutableNotificationContent()
+        content.title = "Distance milestone"
+        content.subtitle = "Current trip distance: \(distanceTraveled)"
+        content.sound = UNNotificationSound.default
+
+        // show this notification five seconds from now
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+
+        // choose a random identifier
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
+
+        // add our notification request
+        UNUserNotificationCenter.current().add(request)
     }
 }
