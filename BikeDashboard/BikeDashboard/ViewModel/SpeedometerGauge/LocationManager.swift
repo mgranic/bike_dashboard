@@ -22,8 +22,6 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
     private var lastLocation: CLLocation?
     private var lastNotificationDIstance = 0.0
     
-
-    
     private let mpsToKmh = 3.6      // transform from m/s to km/h
     private let mToKm = 1000.0      // meters to kilometers
     private let distanceNotificationStep = 2.0 // distance in km that should be alarmed to user
@@ -66,13 +64,12 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
                 let distanceFromLastLocation = ((location.distance(from: lastLocation!)) / mToKm)
                 totalDistance += distanceFromLastLocation
                 tripDistance += distanceFromLastLocation
+                lastNotificationDIstance += distanceFromLastLocation
                 lastLocation = location
                 
                 // show notification for every 5 kilometers in current trip
-                if ((Int(tripDistance) % Int(distanceNotificationStep) == 0) &&
-                    (tripDistance != 0.0) &&
-                    ((tripDistance - lastNotificationDIstance) >= distanceNotificationStep)) {
-                    lastNotificationDIstance = tripDistance
+                if (lastNotificationDIstance >= distanceNotificationStep) {
+                    lastNotificationDIstance = 0
                     showNotification(distanceTraveled: tripDistance)
                 }
                 
@@ -128,8 +125,8 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
         return (speed * mpsToKmh) // transform from m/s to km/h
     }
     
+    // display notification to the user showing current trip distance
     private func showNotification(distanceTraveled: Double) {
-        print("++++++ SHOW NOTIFICATION EXECUTED ++++")
         let content = UNMutableNotificationContent()
         content.title = "Distance milestone"
         content.subtitle = "Current trip distance: \(distanceTraveled)"
