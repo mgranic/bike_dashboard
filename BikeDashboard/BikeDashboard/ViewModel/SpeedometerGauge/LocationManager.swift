@@ -67,12 +67,11 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
                 lastNotificationDIstance += distanceFromLastLocation
                 lastLocation = location
                 
-                // show notification for every 5 kilometers in current trip
+                // show notification for every "distanceNotificationStep" kilometers in current trip
                 if (lastNotificationDIstance >= distanceNotificationStep) {
                     lastNotificationDIstance = 0
                     showNotification(distanceTraveled: tripDistance)
                 }
-                
             }
             
             // update map
@@ -105,6 +104,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate, ObservableObje
     private func setupLocationManager() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.allowsBackgroundLocationUpdates = true
         locationManager.requestAlwaysAuthorization()
     }
     
