@@ -21,8 +21,10 @@ struct DashboardData: View {
     var body: some View {
         VStack {
             Text("Pace: \(locationManager.pace, specifier: "%.1f") min/km")
+                .font(.title)
             Text("Heart Rate: \(hrManager.heartRate, specifier: "%.0f")")
                 .font(.title)
+            Text("Heartbeat timestamp: \(hrManager.heartbeatTime)")
         }
         // If HealthKit data is available, request authorization
         // when this view appears.
@@ -35,7 +37,6 @@ struct DashboardData: View {
                 trigger.toggle()
             }
             //hrManager.startHeartRateMeasurement()
-            guard authenticated else {return}
             hrManager.startHeartRateMeasurement()
             Task {
                 //await getHeartRate()

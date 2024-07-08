@@ -10,6 +10,7 @@ import HealthKitUI
 
 class HeartRateManager: ObservableObject {
     @Published var heartRate: Double = 0
+    @Published var heartbeatTime: Date = Date()
     
     let healthStore = HKHealthStore()
     
@@ -45,10 +46,10 @@ class HeartRateManager: ObservableObject {
             // Launch the query and wait for the results.
             // The system automatically sets results to [HKQuantitySample].
             let results = try await descriptor.result(for: healthStore)
-            
             // Update the published property on the main thread
             DispatchQueue.main.async {
                 self.heartRate = results.first?.quantity.doubleValue(for: HKUnit(from: "count/min")) ?? -1.5
+                self.heartbeatTime = Date()
             }
         } catch {
             DispatchQueue.main.async {
